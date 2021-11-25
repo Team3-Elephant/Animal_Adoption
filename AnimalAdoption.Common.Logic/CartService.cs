@@ -37,7 +37,7 @@ namespace AnimalAdoption.Common.Logic
                 }
                 else if (domainCart.CartContents.ContainsKey(animalId))
                 {
-                    domainCart.CartContents[animalId] = quantity;
+                    domainCart.CartContents[animalId] = quantity+1;
                 }
                 else
                 {
