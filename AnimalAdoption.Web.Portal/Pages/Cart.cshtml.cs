@@ -28,7 +28,7 @@ namespace AnimalAdoption.Web.Portal
         public IActionResult OnPost(int id, int quantity)
         {
             var cartValue = Request.Cookies["z_name"] ?? Request.Cookies["z_cartId"];
-            _cartLogic.SetAnimalQuantity(cartValue, id, quantity-3);
+            _cartLogic.SetAnimalQuantity(cartValue, id, quantity+1);
             return LocalRedirect("/cart");
         }
 
