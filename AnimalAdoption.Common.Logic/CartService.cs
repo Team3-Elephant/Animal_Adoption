@@ -41,7 +41,7 @@ namespace AnimalAdoption.Common.Logic
                 }
                 else
                 {
-                    domainCart.CartContents.Add(animalId, quantity);
+                    domainCart.CartContents.Add(animalId, quantity-1);
                 }
 
                 _cache.Set(cartId, domainCart);
