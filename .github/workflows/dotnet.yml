@@ -36,7 +36,9 @@ jobs:
         if-no-files-found: error # optional, default is 
         
   releasetodev:
+    
     name: Release to dev 
+    needs: [build]
     runs-on: ubuntu-latest
 
     steps:
