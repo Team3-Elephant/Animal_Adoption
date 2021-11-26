@@ -34,3 +34,15 @@ jobs:
         path: output/publish
         # The desired behavior if no files are found using the provided path.        
         if-no-files-found: error # optional, default is 
+        
+  releasetodev:
+    name: Release to dev 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.0.10
+        with:
+            # Artifact name
+          name: artifact
+            # Destination path
