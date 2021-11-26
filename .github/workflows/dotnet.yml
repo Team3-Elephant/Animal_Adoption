@@ -65,7 +65,27 @@ jobs:
             app-name: team3-elephant-wa-dev
           # Application settings using the JSON syntax set as value of secret variable: APP_SETTINGS
             app-settings-json: '[{ "name": "GlobalPassword", "value": "@Microsoft.KeyVault(SecretUri=https://kv-team3-dev.vault.azure.net/secrets/GlobalPassword)", "slotSetting": false }]'
-     
+   
+  functional-test:    
+    name: functional test 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Functional test dev
+      - uses: actions/setup-dotnet@v1
+        with:
+            dotnet-version: 3.1.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Publish
+        run: dotnet publish --no-restore --no-build -o output/publish
+      - name: Test 
+        run: dotnet test AnimalAdoption.Web.Portal.UnitTests/AnimalAdoption.Web.Portal.UnitTests.csproj --no-build --verbosity normal 
+      - name: FunctioanlTest 
+        run: dotnet test AnimalAdoption.Web.Portal.FunctionalTests/AnimalAdoption.Web.Portal.FunctionalTests.csproj --no-build --verbosity normal 
+  
   release-prod:
       name: Release to prod 
       environment: prod
