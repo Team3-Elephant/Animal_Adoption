@@ -44,6 +44,10 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.DEVSERVICEPRINCIPALS }}
+      - uses: Azure/get-keyvault-secrets@v1
+        with:
+          keyvault: "kv-team3-dev"
+          secrets: '*'
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.0.10
         with:
@@ -60,6 +64,6 @@ jobs:
           # Name of the Azure Web App
             app-name: team3-elephant-wa-dev
           # Application settings using the JSON syntax set as value of secret variable: APP_SETTINGS
-            app-settings-json: '[{ "name": "GlobalPassword", "value": "${{ secrets.GLOBALPASSWORD }}", "slotSetting": false }]'
+            app-settings-json: '[{ "name": "GlobalPassword", "value": "${{ env.GlobalPassword }}", "slotSetting": false }]'
      
              
