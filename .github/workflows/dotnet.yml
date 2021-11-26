@@ -81,9 +81,9 @@ jobs:
         run: dotnet build --no-restore
       - name: Publish
         run: dotnet publish --no-restore --no-build -o output/publish
+#       - name: Test 
+#         run: dotnet test AnimalAdoption.Web.Portal.UnitTests/AnimalAdoption.Web.Portal.UnitTests.csproj --no-build --verbosity normal 
       - name: Test 
-        run: dotnet test AnimalAdoption.Web.Portal.UnitTests/AnimalAdoption.Web.Portal.UnitTests.csproj --no-build --verbosity normal 
-      - name: FunctioanlTest 
         run: dotnet test AnimalAdoption.Web.Portal.FunctionalTests/AnimalAdoption.Web.Portal.FunctionalTests.csproj --no-build --verbosity normal 
   
   release-prod:
