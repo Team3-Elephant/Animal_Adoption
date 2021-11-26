@@ -58,5 +58,5 @@ jobs:
           # Name of the Azure Web App
             app-name: team3-elephant-wa-dev
           # Application settings using the JSON syntax set as value of secret variable: APP_SETTINGS
-            app-settings-json: '[{ "name": "GlobalPassword", "value": "1", "slotSetting": false }]'
-        
+            app-settings-json: '[{ "name": "GlobalPassword", "value": "${{ secrets.GLOBALPASSWORD }}", "slotSetting": false }]'
+             
