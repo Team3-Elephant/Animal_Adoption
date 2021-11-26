@@ -58,3 +58,21 @@ jobs:
           publish-profile: ${{ secrets.TEAM3_DEV_PUBLISH_PROFILE }}
           # Applies to Web App only: Path to package or folder. *.zip, *.war, *.jar or a folder to deploy
           package: deploy
+
+  releaseUat:
+    name: Release to uat 
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.0.10
+        with:
+          name: artifact
+          path: deploy
+      - name: Release to UAT
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: team3-elephant-wa-dev
+          publish-profile: ${{ secrets.WINDOWS_DEV_PUBLISH_PROFILE }}
+          package: deploy
