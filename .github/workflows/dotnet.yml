@@ -74,7 +74,7 @@ jobs:
       steps:
         - uses: azure/login@v1
           with:
-            creds: ${{ secrets.PROD_SERVICE_PRINCIPAL }}        
+            creds: ${{ secrets.DEVSERVICEPRINCIPALS }}        
         - name: Download a Build Artifact
           uses: actions/download-artifact@v2.0.10
           with:
