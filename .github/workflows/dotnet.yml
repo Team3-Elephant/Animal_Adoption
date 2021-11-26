@@ -35,8 +35,7 @@ jobs:
         # The desired behavior if no files are found using the provided path.        
         if-no-files-found: error # optional, default is 
         
-  releasetodev:
-    
+  release-dev:
     name: Release to dev 
     needs: [build]
     runs-on: ubuntu-latest
@@ -45,32 +44,9 @@ jobs:
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.0.10
         with:
-            # Artifact name
           name: artifact
-            # Destination path
           path: deploy
       - name: Release to Dev
-        uses: Azure/webapps-deploy@v2
-        with:
-          # Name of the Azure Web App
-          app-name: Team3-Elephant-Dev
-          # Applies to Web Apps(Windows and Linux) and Web App Containers(linux). Multi container scenario not supported. Publish profile (*.publishsettings) file contents with Web Deploy secrets
-          publish-profile: ${{ secrets.TEAM3_DEV_PUBLISH_PROFILE }}
-          # Applies to Web App only: Path to package or folder. *.zip, *.war, *.jar or a folder to deploy
-          package: deploy
-
-  releaseUat:
-    name: Release to uat 
-    needs: [build]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v2.0.10
-        with:
-          name: artifact
-          path: deploy
-      - name: Release to UAT
         uses: Azure/webapps-deploy@v2
         with:
           app-name: team3-elephant-wa-dev
