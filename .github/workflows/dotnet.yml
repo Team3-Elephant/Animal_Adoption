@@ -48,6 +48,7 @@ jobs:
             # Artifact name
           name: artifact
             # Destination path
+          path: deploy
       - name: Release to Dev
         uses: Azure/webapps-deploy@v2
         with:
@@ -56,4 +57,4 @@ jobs:
           # Applies to Web Apps(Windows and Linux) and Web App Containers(linux). Multi container scenario not supported. Publish profile (*.publishsettings) file contents with Web Deploy secrets
           publish-profile: ${{ secrets.TEAM3_DEV_PUBLISH_PROFILE }}
           # Applies to Web App only: Path to package or folder. *.zip, *.war, *.jar or a folder to deploy
-          package: .      
+          package: deploy
