@@ -66,4 +66,32 @@ jobs:
           # Application settings using the JSON syntax set as value of secret variable: APP_SETTINGS
             app-settings-json: '[{ "name": "GlobalPassword", "value": "@Microsoft.KeyVault(SecretUri=https://kv-team3-dev.vault.azure.net/secrets/GlobalPassword)", "slotSetting": false }]'
      
-             
+  release-prod:
+      name: Release to prod 
+      needs: [build, release-dev]
+      runs-on: ubuntu-latest
+
+      steps:
+        - uses: azure/login@v1
+          with:
+            creds: ${{ secrets.PROD_SERVICE_PRINCIPAL }}        
+        - name: Download a Build Artifact
+          uses: actions/download-artifact@v2.0.10
+          with:
+            name: artifact
+            path: deploy
+        - name: Release to Prod
+          uses: Azure/webapps-deploy@v2
+          with:
+            app-name: wa-team3-prod
+            package: deploy
+        - name: Azure App Service Settings
+          uses: Azure/appservice-settings@v1
+          with:
+            # Name of the Azure Web App
+              app-name: wa-team3-prod
+            # Application settings using the JSON syntax set as value of secret variable: APP_SETTINGS
+              app-settings-json: '[{ "name": "GlobalPassword", "value": "@Microsoft.KeyVault(SecretUri=https://kv-team3-prod.vault.azure.net/secrets/GlobalPassword)", "slotSetting": false }]'
+
+
+
