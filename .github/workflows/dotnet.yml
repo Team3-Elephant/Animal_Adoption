@@ -68,6 +68,7 @@ jobs:
      
   release-prod:
       name: Release to prod 
+      environment: prod
       needs: [build, release-dev]
       runs-on: ubuntu-latest
 
