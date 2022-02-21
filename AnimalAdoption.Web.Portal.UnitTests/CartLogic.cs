@@ -25,7 +25,7 @@ namespace AnimalAdoption.Service.Cart.UnitTests
         public void CartManagement_EmptyCartAddNegativeAnimal_AnAnimalDoesNotGoIntoNegative()
         {
             var animalId = 1;
-            var quantityAmount = -1;
+            var quantityAmount = 1;
 
             var memoryCache = new MemoryCache(new MemoryCacheOptions());
             var resultingCart = new CartService(memoryCache, new AnimalService()).SetAnimalQuantity("TEST_CART", animalId, quantityAmount);
